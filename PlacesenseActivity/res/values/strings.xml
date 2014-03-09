@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PlacesenseActivity</string>
+    <string name="action_settings">Settings</string>    
+    <string name="turnon">Turn On</string>
+    <string name="turnoff">Turn Off</string>
+    <string name="bindit">Bind it</string>
+    <string name="unbindit">Unbind it</string>
+	 <string name="kill_service">Kill service</string>
+	 <string name="sendmessage">Send Message</string>
+</resources>
