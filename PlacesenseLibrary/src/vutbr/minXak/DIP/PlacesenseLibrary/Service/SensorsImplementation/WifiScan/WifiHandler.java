@@ -3,11 +3,14 @@ package vutbr.minXak.DIP.PlacesenseLibrary.Service.SensorsImplementation.WifiSca
 import java.util.List;
 import java.util.Timer;
 
+import vutbr.minXak.DIP.PlacesenseLibrary.DatabaseHelper.RawData.RawDataRepository;
 import vutbr.minXak.DIP.PlacesenseLibrary.Service.SensorsImplementation.BaseHandler;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class WifiHandler extends BaseHandler implements IWifiBroadcastResultHandler {
 
@@ -18,13 +21,16 @@ public class WifiHandler extends BaseHandler implements IWifiBroadcastResultHand
 	private Timer mTimer;
 	private WifiBroadcastReciever mWifiBroadcastReciever;
 	private IntentFilter wifiScanIntent;
+	
+	private RawDataRepository repository;
 
 	private List<ScanResult> scanResultList;
 
-	public WifiHandler(WifiManager wifiManager, Context context) {
+	public WifiHandler(WifiManager wifiManager, Context context, RawDataRepository dataRepository) {
 		this.mWifiManager = wifiManager;
 		this.mContext = context;
 		this.mWifiBroadcastReciever = new WifiBroadcastReciever(this, this.mWifiManager);
+		this.repository = dataRepository;	
 
 		this.createIntentFilter();
 	}
@@ -57,7 +63,10 @@ public class WifiHandler extends BaseHandler implements IWifiBroadcastResultHand
 	}
 
 	@Override
-	public void SetResults(List<ScanResult> list) {
+	public void SetResults(List<ScanResult> list) {	
+		Gson gson = new GsonBuilder().registerTypeAdapter(ScanResult.class, new ScanResultSerialiser()).create();
+		String result = gson.toJson(list);
+		this.repository.insertRawValue(result);
 		this.scanResultList = list;
 	}
 
