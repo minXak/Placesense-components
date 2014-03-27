@@ -6,20 +6,12 @@ import java.util.List;
 import vutbr.minXak.DIP.PlacesenseLibrary.Client.MessageHandlers.RequestHandler;
 import vutbr.minXak.DIP.PlacesenseLibrary.Handlers.IHandler;
 import android.app.Activity;
-import android.content.Context;
-import android.hardware.SensorManager;
-import android.location.LocationManager;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Messenger;
 import android.widget.Button;
 
 public class PlacesenseActivityMain extends Activity implements ITurnOnOffable, IMessengerWorker {
-
-	private SensorManager mSensorManager;
-	private LocationManager mLocationManager;
-	private WifiManager mWifiManger;
 	
 	private Messenger mMessenger;
 	
@@ -37,7 +29,6 @@ public class PlacesenseActivityMain extends Activity implements ITurnOnOffable, 
 		setContentView(R.layout.activity_placesence);
 
 		this.LoadButtons();
-//		this.LoadModules();
 	}
 
 	private void LoadButtons() {
@@ -61,17 +52,6 @@ public class PlacesenseActivityMain extends Activity implements ITurnOnOffable, 
 		for(IHandler h : this.mHandlers){
 			h.TurnOff();
 		}
-	}
-
-	private void LoadModules() {
-		this.mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-		this.mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-		this.mWifiManger = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-
-//		this.mHandlers.add(new AccelometerHandler(this.mSensorManager));
-//		this.mHandlers.add(new GpsHandler(this.mLocationManager));
-//		this.mHandlers.add(new WifiHandler(this.mWifiManger, this));
 	}
 
 	@Override
