@@ -22,6 +22,7 @@ public class RequestHandler extends Handler {
 			super.handleMessage(msg);
 		}
 	}
+	
 
 	private void ResponseToTest(Message msg) {
 		String requestData = msg.getData().getString("data");
