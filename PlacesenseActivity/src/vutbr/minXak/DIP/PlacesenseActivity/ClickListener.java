@@ -23,6 +23,7 @@ public class ClickListener implements OnClickListener {
 		this.mMessageWorker = messageWorker;
 	}
 
+	
 	@Override
 	public void onClick(View v) {
 		if (this.status) {
