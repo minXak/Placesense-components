@@ -17,6 +17,7 @@ public class Beacon {
 		return this.Mac.hashCode();
 	}
 
+	
 	public boolean isLocal() {		
 		String[] mac = this.Mac.split(":");
 	    int value = Integer.decode("0x" + mac[0]);	    

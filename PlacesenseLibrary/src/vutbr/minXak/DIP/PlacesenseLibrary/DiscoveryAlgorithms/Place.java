@@ -27,7 +27,6 @@ public class Place {
 		}
 	}
 	
-
 	private boolean isRepresentative(Integer appearCount) {
 		return appearCount / (DiscoveryAlgorithm.MaxStableScanDepth * ScanWindow.WindowMaxSize) > DiscoveryAlgorithm.ResponseRateRepresentativeThreshold;
 	}
