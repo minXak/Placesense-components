@@ -23,7 +23,6 @@ public class RequestHandler extends Handler {
 		}
 	}
 	
-
 	private void ResponseToTest(Message msg) {
 		String requestData = msg.getData().getString("data");
 		Message response = this.CreateResponseForTest(requestData);
